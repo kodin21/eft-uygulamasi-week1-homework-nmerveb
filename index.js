@@ -40,15 +40,16 @@ function timer(duration,timeLabel){
     }, 1000);
 }
 timer(2*60,time);
-
+//select tagine option ekler
 let createOption = (id,iban,balance) => {
     let option = `<option id="${id}" value="${balance}">TR${iban} - Bakiye: ${balance}</option>`
     return option;
 };
+//Hesapların eklenmesini sağlar
 accountList.forEach((item)=>{
     accounts.innerHTML += createOption(item.id,item.iban,item.balance);
 })
-
+//Şifrenin doğru olup olmadığını ve kaç kere girilmiş olduğunu kontrol eder.
 let passwordControl =(counter)=>{
     password = prompt("Gönderilen şifreyi giriniz.");
     if(password=="1234"){
@@ -68,6 +69,7 @@ let passwordControl =(counter)=>{
 ibanToSend.onkeypress = function(){menu.checkValidity()? submitButton.disabled=false:submitButton.disabled=true;};
 accounts.addEventListener("change",()=>{menu.checkValidity()? submitButton.disabled=false:submitButton.disabled=true;});
 
+//Gönder işleminde yapılacakları tutar.
 submitButton.addEventListener("click", ()=>{
     let selectedIban =accounts.options[accounts.selectedIndex];
     let counter = 1;
